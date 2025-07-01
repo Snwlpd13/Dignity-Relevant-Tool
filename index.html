@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dignity Relevance Self-Assessment Tool</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            font-family: "Inter", sans-serif;
+            background-color: #f0f4f8; /* Light blue-gray background */
+        }
+    </style>
+</head>
+<body class="flex items-center justify-center min-h-screen p-4">
+    <div class="bg-white p-8 rounded-lg shadow-xl max-w-2xl w-full text-center">
+        <h1 class="text-3xl font-bold text-gray-800 mb-4">Dignity Relevance Self-Assessment Tool</h1>
+        <p class="text-gray-600 mb-6">
+            This tool is aimed to help project teams to self-evaluate how important or relevant dignity
+            considerations can be for their respective project work.
+        </p>
+        <p class="text-gray-600 mb-8">
+            As a project team, ask these 8 key questions to gauge how critical dignity is to your work.
+        </p>
+        <button id="startAssessmentBtn" class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-6 rounded-lg shadow-md transition duration-300 ease-in-out transform hover:scale-105">
+            Start Assessment
+        </button>
+    </div>
+
+    <script>
+        // JavaScript for handling the start button (will be expanded later)
+        document.getElementById('startAssessmentBtn').addEventListener('click', function() {
+            // For now, we'll just log to the console.
+            // Later, this will transition to the first question.
+            console.log('Assessment started!');
+            // You can add logic here to hide the intro and show the first question
+        });
+    </script>
+</body>
+</html>
