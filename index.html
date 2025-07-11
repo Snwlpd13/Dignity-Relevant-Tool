@@ -9,7 +9,16 @@
     <style>
         body {
             font-family: "Inter", sans-serif;
-            background-color: #f0f4f8; /* Light blue-gray background */
+            /* Using the light blue/cyan for the body background */
+            background-color: #a8ccebff;
+        }
+        /* Custom hover color for primary buttons */
+        .btn-primary-hover:hover {
+            background-color: #1e3a70; /* A slightly darker shade of #264d96 */
+        }
+        /* Custom hover color for secondary buttons */
+        .btn-secondary-hover:hover {
+            background-color: #8fb8d4; /* A slightly darker shade of #a8ccebff */
         }
     </style>
 </head>
@@ -17,34 +26,37 @@
 
     <!-- Introduction Section -->
     <div id="introSection" class="bg-white p-8 rounded-lg shadow-xl max-w-2xl w-full text-center">
-        <h1 class="text-3xl font-bold text-gray-800 mb-4">Dignity Relevance Self-Assessment Tool</h1>
-        <p class="text-gray-600 mb-6">
+        <!-- Logo Added Here with corrected relative path -->
+        <img src="DignityLogo-ForWhiteBG.png" alt="Dignity Logo" class="mx-auto mb-6 max-w-[200px] h-auto rounded-md">
+        
+        <h1 class="text-3xl font-bold text-[#264d96] mb-4">Dignity Relevance Self-Assessment Tool</h1>
+        <p class="text-gray-700 mb-6">
             This tool is aimed to help project teams to self-evaluate how important or relevant dignity
             considerations can be for their respective project work.
         </p>
-        <p class="text-gray-600 mb-8">
+        <p class="text-gray-700 mb-8">
             As a project team, ask these 8 key questions to gauge how critical dignity is to your work.
         </p>
-        <button id="startAssessmentBtn" class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-6 rounded-lg shadow-md transition duration-300 ease-in-out transform hover:scale-105">
+        <button id="startAssessmentBtn" class="bg-[#264d96] btn-primary-hover text-white font-bold py-3 px-6 rounded-lg shadow-md transition duration-300 ease-in-out transform hover:scale-105">
             Start Assessment
         </button>
     </div>
 
     <!-- Questions Section (Initially Hidden) -->
     <div id="questionsSection" class="bg-white p-8 rounded-lg shadow-xl max-w-2xl w-full hidden">
-        <h2 class="text-2xl font-bold text-gray-800 mb-6">Assessment Questions</h2>
+        <h2 id="questionsHeading" class="text-2xl font-bold text-[#264d96] mb-6">Assessment Questions</h2>
         <div id="questionContainer" class="text-left">
             <!-- Questions will be loaded here dynamically -->
             <p class="text-gray-700">Loading first question...</p>
         </div>
         <div class="mt-8 flex justify-between">
-            <button id="prevQuestionBtn" class="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded-lg shadow-md transition duration-300 ease-in-out hidden">
+            <button id="prevQuestionBtn" class="bg-[#a8ccebff] btn-secondary-hover text-[#264d96] font-bold py-2 px-4 rounded-lg shadow-md transition duration-300 ease-in-out hidden">
                 Previous
             </button>
-            <button id="nextQuestionBtn" class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-lg shadow-md transition duration-300 ease-in-out">
+            <button id="nextQuestionBtn" class="bg-[#264d96] btn-primary-hover text-white font-bold py-2 px-4 rounded-lg shadow-md transition duration-300 ease-in-out">
                 Next
             </button>
-            <button id="submitAssessmentBtn" class="bg-green-600 hover:bg-green-700 text-white font-bold py-2 px-4 rounded-lg shadow-md transition duration-300 ease-in-out hidden">
+            <button id="submitAssessmentBtn" class="bg-[#ffe187] btn-primary-hover text-[#264d96] font-bold py-2 px-4 rounded-lg shadow-md transition duration-300 ease-in-out hidden">
                 Submit
             </button>
         </div>
@@ -54,6 +66,7 @@
         // Get references to the sections and buttons
         const introSection = document.getElementById('introSection');
         const questionsSection = document.getElementById('questionsSection');
+        const questionsHeading = document.getElementById('questionsHeading'); // New reference for the heading
         const startAssessmentBtn = document.getElementById('startAssessmentBtn');
         const questionContainer = document.getElementById('questionContainer');
         const prevQuestionBtn = document.getElementById('prevQuestionBtn');
@@ -206,7 +219,7 @@
                 q.options.forEach(option => {
                     optionsHtml += `
                         <label class="block mb-2 text-gray-700">
-                            <input type="radio" name="question-${q.id}" value="${option.value}" class="mr-2 rounded-md border-gray-300 text-blue-600 focus:ring-blue-500">
+                            <input type="radio" name="question-${q.id}" value="${option.value}" class="mr-2 rounded-md border-gray-300 text-[#264d96] focus:ring-[#264d96]">
                             ${option.text}
                         </label>
                     `;
@@ -215,7 +228,7 @@
                 q.options.forEach(option => {
                     optionsHtml += `
                         <label class="block mb-2 text-gray-700">
-                            <input type="checkbox" name="question-${q.id}" value="${option.value}" class="mr-2 rounded-md border-gray-300 text-blue-600 focus:ring-blue-500">
+                            <input type="checkbox" name="question-${q.id}" value="${option.value}" class="mr-2 rounded-md border-gray-300 text-[#264d96] focus:ring-[#264d96]">
                             ${option.text}
                         </label>
                     `;
@@ -233,9 +246,9 @@
 
             questionContainer.innerHTML = `
                 <p class="text-xl font-semibold mb-4">${q.question}</p>
-                <div class="mb-6 p-4 bg-gray-50 rounded-lg border border-gray-200">
-                    <p class="font-medium text-gray-800 mb-2">Considerations:</p>
-                    <p class="text-gray-700 text-sm">${q.consider}</p>
+                <div class="mb-6 p-4 bg-[#a8ccebff] rounded-lg border border-[#264d96]">
+                    <p class="font-medium text-[#264d96] mb-2">Considerations:</p>
+                    <p class="text-[#264d96] text-sm">${q.consider}</p>
                 </div>
                 <div class="options-group">
                     ${optionsHtml}
@@ -279,6 +292,7 @@
         startAssessmentBtn.addEventListener('click', function() {
             introSection.classList.add('hidden'); // Hide the intro section
             questionsSection.classList.remove('hidden'); // Show the questions section
+            questionsHeading.classList.remove('hidden'); // Ensure the heading is visible when starting
             displayQuestion(currentQuestionIndex); // Display the first question
         });
 
@@ -316,13 +330,16 @@
                 recommendation = "Comprehensive dignity integration recommended";
             }
 
+            // Hide the "Assessment Questions" heading before displaying results
+            questionsHeading.classList.add('hidden');
+
             // Display results
             questionContainer.innerHTML = `
-                <h2 class="text-2xl font-bold text-gray-800 mb-4">Assessment Complete!</h2>
-                <p class="text-gray-700 mb-2">Your dignity relevance score is <span class="font-bold text-blue-600">${totalHighRelevance}</span> out of 8.</p>
-                <p class="text-lg font-semibold text-green-700 mb-6">Recommendation: ${recommendation}</p>
-                <p class="text-gray-600">Thank you for using the Dignity Relevance Self-Assessment Tool.</p>
-                <button id="restartAssessmentBtn" class="mt-6 bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-lg shadow-md transition duration-300 ease-in-out">
+                <h2 class="text-2xl font-bold text-[#264d96] mb-4">Assessment Complete!</h2>
+                <p class="text-gray-700 mb-2">Your dignity relevance score is <span class="font-bold text-[#264d96]">${totalHighRelevance}</span> out of 8.</p>
+                <p class="text-lg font-semibold text-[#264d96] mb-6">Recommendation: ${recommendation}</p>
+                <p class="text-gray-700">Thank you for using the Dignity Relevance Self-Assessment Tool.</p>
+                <button id="restartAssessmentBtn" class="mt-6 bg-[#264d96] btn-primary-hover text-white font-bold py-2 px-4 rounded-lg shadow-md transition duration-300 ease-in-out">
                     Restart Assessment
                 </button>
             `;
